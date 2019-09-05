@@ -603,7 +603,7 @@ export default {
       this.$refs.gameContainer.clientWidth,
       window.innerHeight / 1.7
     );
-    service.register(id);
+    //service.register(id);
 
     this.$root.$on('social_shares_open', function(network, url) {
       _vm.trackTweet()
@@ -776,7 +776,18 @@ export default {
         this.endLastGame();
         return;
       }
-      service
+
+      this.levelIndex++;
+      let timeChange = 15;
+      this.secondsLeft += timeChange;
+      this.timeIncrease = `+${timeChange}`;
+      this.balanceIncrease++;
+      this.reward += 10;
+      Vue.nextTick(() => {
+        this.timeIncrease = "";
+        this.balanceIncrease = "";
+      });
+      /*service
         .completeLevel(this.globalData.privkey, this.levelIndex + 1, moves)
         .then(rewards => {
           this.levelIndex++;
@@ -789,7 +800,7 @@ export default {
             this.timeIncrease = "";
             this.balanceIncrease = "";
           });
-        });
+        });*/
     },
     endGame() {
       stopBackgroundMusic();
@@ -848,11 +859,11 @@ export default {
       this.secondsLeft = InitialSeconds;
       this.startTimer();
 
-      service
+      /*service
         .stakeToken(this.globalData.privkey, this.globalData.stake)
         .then(() => {
           this.$emit("stake", this.globalData.stake);
-        });
+        });*/
     },
 
     /**

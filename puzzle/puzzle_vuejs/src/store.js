@@ -3,7 +3,7 @@ let store = {
     data: {
         txs: [],
         stakeTxId: '',
-        balance: 0,
+        balance: 100,
         id: '',
         uid: '',
         privkey: '',

@@ -7,7 +7,7 @@ import store from "./store";
 
 // const HTTP_BACKEND_URL = `https://bepuzzle.harmonyprotocol.com`;
 
-const HTTP_BACKEND_URL = `https://benchmark-209420.appspot.com/`;
+const HTTP_BACKEND_URL = `http://localhost:9999`;
 
 function sendPost(url, params) {
     return axios.post(HTTP_BACKEND_URL + url, params, {

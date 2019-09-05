@@ -120,7 +120,7 @@ footer {
 <template >
   <div class="flex-horizontal stake-row">
     <div class="stake-buttons flex-horizontal">
-      <button class="btn-mini" @click="minus" :disabled="globalData.stake <= 20">
+      <button class="btn-mini" @click="minus" >
         <font-awesome-icon icon="minus"></font-awesome-icon>
       </button>
       <div class="stake-amount flex-hv-center">
@@ -135,7 +135,6 @@ footer {
       v-if="showPlayButton()"
       class="btn-primary start-btn"
       @click="stakeToken"
-      :disabled="globalData.balance < 20"
     >Play</button>
   </div>
 </template>
@@ -174,13 +173,15 @@ export default {
     },
     stakeToken() {
       playBackgroundMusic();
-      service
+      /*service
         .stakeToken(this.globalData.privkey, this.globalData.stake)
         .then(() => {
           this.$emit("stake", this.globalData.stake);
-        });
+        });*/
+        this.$emit("stake", this.globalData.stake);
     },
     showPlayButton() {
+
       return !(this.isLevel10 && !this.gameEnded)
     }
   }
