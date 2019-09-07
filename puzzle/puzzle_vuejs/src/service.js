@@ -7,7 +7,8 @@ import store from "./store";
 
 // const HTTP_BACKEND_URL = `https://bepuzzle.harmonyprotocol.com`;
 
-const HTTP_BACKEND_URL = `http://localhost:9999`;
+// const HTTP_BACKEND_URL = `http://localhost:9999`;
+const HTTP_BACKEND_URL = `http://localhost:5001/newpuzzle-35360/us-central1`;
 
 function sendPost(url, params) {
     return axios.post(HTTP_BACKEND_URL + url, params, {
@@ -17,7 +18,36 @@ function sendPost(url, params) {
     });
 }
 
+function sendGet(url, params) {
+    return axios.get(HTTP_BACKEND_URL + url, params, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+    });
+}
+
 export default {
+    getSession(cb) {
+        return sendGet(`/play`
+        ).then(res => {
+            let {session_id, address } = res.data;
+            console.log(session_id, address);
+            store.setSession(session_id, address);
+            cb();
+        });
+    },
+    saveRecord(level, moves, cb) {
+        console.log('address', store.data.address)
+        console.log('session_id', store.data.session_id)
+        console.log('level', level)
+        console.log('moves', moves)
+        return sendPost(`/payout?address=${store.data.address}&id=${store.data.session_id}&level=${level}&sequence=${moves}`,
+        ).then(res => {
+            const {tx, success} = res.data;
+            store.setPayout(tx, success)
+            cb();
+        });
+    },
     register(token) {
         return sendPost(
             token ? `/reg?token=${token}` : `/reg`,

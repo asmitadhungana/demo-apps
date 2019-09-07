@@ -399,12 +399,44 @@ input{
                     <div class="lose-hope-image">
                       <img src="../assets/lose_hope.svg" alt="">
                     </div>
-                    <span :style="gameTutorialSmallStyle">Don't lose hope!</span>
-                    <br>
-                    <span :style="gameTutorialSmallStyle">Try Again!</span>
-                    <br>
-                    <br>
-                    <br>
+                    <!-- <button v-if="gameEnded"  class="btn-primary" @click="reloadGame">
+                      Play again!
+                    </button> -->
+                    <div v-if="levelIndex > 2">
+                      <div v-if="!(doneSavingRecord && !savingRecord)">
+                        <span :style="gameTutorialSmallStyle">Save your record in Harmonny!</span>
+                        <br>
+                        <button class="btn-primary" @click="saveRecord">
+                          <div v-if="!savingRecord">Save</div>
+                          <div v-else-if="!doneSavingRecord">
+                            <b-spinner small label="Loading..."></b-spinner>
+                          </div>
+                        </button>
+                        <br>
+                      </div>
+                      <div v-else>
+                        <div v-if="success">
+                          <span :style="gameTutorialSmallStyle">Your move is stored at <div v-html="txhtml"></div></span>
+                          <br>
+                        </div>
+                        <div v-else>
+                          <span :style="gameTutorialSmallStyle">Your move is not stored successfully :(</span>
+                          <br>
+                        </div>
+                        <span :style="gameTutorialSmallStyle">Try Again!</span>
+                        <br>
+                        <br>
+                        <br>
+                      </div>
+                    </div>
+                    <div v-else>
+                      <span :style="gameTutorialSmallStyle">Don't lose hope!</span>
+                      <br>
+                      <span :style="gameTutorialSmallStyle">Try Again!</span>
+                      <br>
+                      <br>
+                      <br>
+                    </div>
                   </div>
                 </div>
 
@@ -424,9 +456,6 @@ input{
                       </network>
                     </social-sharing>
                   </div>
-                </div>
-                <div>
-
                 </div>
               </div>
             </div>
@@ -580,6 +609,13 @@ export default {
       isMobile: mobilecheck(),
       reward: 0,
       cancelEmail: false,
+
+      // Saving records
+      savingRecord: false,
+      doneSavingRecord: false,
+      tx: '',
+      txhtml: '',
+      success: false,
     };
   },
   mounted() {
@@ -729,6 +765,9 @@ export default {
   },
   methods: {
     startGame() {
+      console.log('minh startGame')
+      this.doneSavingRecord = false;
+      this.savingRecord = false;
       this.gameStarted = true;
       this.gameEnded = false;
       this.cancelEmail = false;
@@ -768,9 +807,25 @@ export default {
       const userLevel = this.userGameLevel()
       this.$ga.event('puzzle-game', 'tweet', userLevel)
     },
+    saveRecord() {
+      this.savingRecord = true
+      this.doneSavingRecord = false
+      console.log('minh saveRecord', this.levelIndex - 1, this.lastMoves)
+      service.saveRecord(this.levelIndex, this.lastMoves, () => {
+        console.log('minh done saving')
+        this.doneSavingRecord = true
+        this.savingRecord = false;
+        this.success = store.data.success;
+        this.tx = store.data.tx;
+        this.txhtml = `<a href="https://explorer.harmony.one/#/tx/${this.tx}">transaction</a>`
+      })
+    },
     onLevelComplete(moves) {
+      console.log('minh onLevelComplete')
       this.gaTrack(this.levelIndex);
       this.trackTimePlayed();
+      // Save the most recent moves.
+      this.lastMoves = moves
 
       if (this.levelIndex === this.levels.length - 1) {
         this.endLastGame();
@@ -817,6 +872,7 @@ export default {
       this.levelIndex = this.levels.length;
     },
     restart() {
+      console.log('minh restart')
       this.gameEnded = false;
     },
     closeEmailPopup() {
@@ -851,6 +907,7 @@ export default {
      * Restart the game but still keeps the current point
      */
     restartGame() {
+      console.log('minh restartGame')
       playBackgroundMusic();
       this.levelIndex = 0;
       this.isLevel10 = false;
@@ -870,6 +927,7 @@ export default {
      * Reload the game entirely
      */
     reloadGame() {
+      console.log('minh reloadGame')
       this.$ga.event('puzzle-game', 'reload-game', this.userGameLevel())
       window.location.reload();
     },

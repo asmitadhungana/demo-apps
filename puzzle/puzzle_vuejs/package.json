@@ -18,6 +18,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.28",
     "gsap": "^2.1.2",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",

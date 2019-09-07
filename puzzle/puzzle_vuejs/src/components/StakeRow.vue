@@ -134,14 +134,21 @@ footer {
     <button
       v-if="showPlayButton()"
       class="btn-primary start-btn"
-      @click="stakeToken"
-    >Play</button>
+      @click="letsPlay"
+    >
+    <div v-if="!loading"> Play </div>
+    <div v-if="loading">
+        <b-spinner small label="Loading..."></b-spinner>
+    </div>
+
+    </button>
   </div>
 </template>
 
 <script>
 import service from "../service";
 import store from "../store";
+import { connect } from 'net';
 export default {
   name: "StakeRow",
   props: {
@@ -150,7 +157,9 @@ export default {
   },
   data() {
     return {
-      globalData: store.data
+      globalData: store.data,
+      loading: false
+
     };
   },
   computed: {
@@ -170,6 +179,16 @@ export default {
     plus() {
       if (this.globalData.stake + 20 > this.globalData.balance) return;
       this.globalData.stake += 20;
+    },
+    letsPlay() {
+      playBackgroundMusic();
+      console.log('minh');
+      this.loading = true;
+      service.getSession(() => {
+        this.loading = false;
+        this.$emit("stake");
+        console.log('minh session id', store.data.session_id)
+      })
     },
     stakeToken() {
       playBackgroundMusic();

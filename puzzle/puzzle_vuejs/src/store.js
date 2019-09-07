@@ -7,10 +7,23 @@ let store = {
         id: '',
         uid: '',
         privkey: '',
+        session_id: '',
         address: '',
         stake: 20,
         email: '',
-        coupon: ''
+        coupon: '',
+        success: false,
+        tx: '',
+    },
+    setSession(session_id, address) {
+        console.log('set sessionid and address', session_id, address)
+        this.data.address = address;
+        this.data.session_id = session_id;
+    },
+    setPayout(tx, success) {
+        console.log('set tx and success', tx, success)
+        this.data.tx = tx;
+        this.data.success = success;
     },
     addTx(tx) {
         this.data.txs.push(tx);
