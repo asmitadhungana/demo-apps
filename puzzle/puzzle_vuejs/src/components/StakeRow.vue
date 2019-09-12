@@ -182,6 +182,7 @@ export default {
     },
     letsPlay() {
       playBackgroundMusic();
+      this.globalData.balance -= this.globalData.stake;
       console.log('minh');
       this.loading = true;
       service.getSession(() => {

@@ -836,7 +836,8 @@ export default {
       let timeChange = 15;
       this.secondsLeft += timeChange;
       this.timeIncrease = `+${timeChange}`;
-      this.balanceIncrease++;
+      this.balanceIncrease += 10;
+      store.data.balance += 10;
       this.reward += 10;
       Vue.nextTick(() => {
         this.timeIncrease = "";
