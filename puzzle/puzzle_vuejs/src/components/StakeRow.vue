@@ -186,9 +186,9 @@ export default {
       this.loading = true;
       service.getSession(() => {
         this.loading = false;
-        this.$emit("stake");
         console.log('minh session id', store.data.session_id)
       })
+      this.$emit("stake");
     },
     stakeToken() {
       playBackgroundMusic();

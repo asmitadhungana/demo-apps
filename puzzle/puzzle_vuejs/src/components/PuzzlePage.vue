@@ -815,9 +815,9 @@ export default {
         console.log('minh done saving')
         this.doneSavingRecord = true
         this.savingRecord = false;
-        this.success = store.data.success;
+        this.success = store.data.success == 0;
         this.tx = store.data.tx;
-        this.txhtml = `<a href="https://explorer.harmony.one/#/tx/${this.tx}">transaction</a>`
+        this.txhtml = `<a href="https://explorer.beta.harmony.one/#/tx/${this.tx}">transaction</a>`
       })
     },
     onLevelComplete(moves) {

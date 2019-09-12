@@ -8,7 +8,8 @@ import store from "./store";
 // const HTTP_BACKEND_URL = `https://bepuzzle.harmonyprotocol.com`;
 
 // const HTTP_BACKEND_URL = `http://localhost:9999`;
-const HTTP_BACKEND_URL = `http://localhost:5001/newpuzzle-35360/us-central1`;
+// const HTTP_BACKEND_URL = `http://localhost:5001/newpuzzle-35360/us-central1`;
+const HTTP_BACKEND_URL = `https://us-central1-newpuzzle-35360.cloudfunctions.net`;
 
 function sendPost(url, params) {
     return axios.post(HTTP_BACKEND_URL + url, params, {
