@@ -497,6 +497,7 @@ input{
               v-if="showResetButton"
               class="btn-primary"
               @click="resetLevel"
+              onclick="this.blur();"
               :style="{
                 visibility: gameEnded ? 'hidden':'visible',
                 fontSize: boardSizePx / 20 + 'px'
@@ -817,7 +818,7 @@ export default {
         this.savingRecord = false;
         this.success = store.data.success == 0;
         this.tx = store.data.tx;
-        this.txhtml = `<a href="https://explorer.beta.harmony.one/#/tx/${this.tx}">transaction</a>`
+        this.txhtml = `<a target="_blank" rel="noopener noreferrer" href="https://explorer.beta.harmony.one/#/tx/${this.tx}">transaction</a>`
       })
     },
     onLevelComplete(moves) {
