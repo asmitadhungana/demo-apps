@@ -406,12 +406,12 @@ input{
                       <div v-if="!(doneSavingRecord && !savingRecord)">
                         <span :style="gameTutorialSmallStyle">Save your record in Harmonny!</span>
                         <br>
-                        <button class="btn-primary" @click="saveRecord">
-                          <div v-if="!savingRecord">Save</div>
-                          <div v-else-if="!doneSavingRecord">
-                            <b-spinner small label="Loading..."></b-spinner>
-                          </div>
-                        </button>
+                        <div v-if="!savingRecord">
+                          <button class="btn-primary" @click="saveRecord">Save</button>
+                        </div>
+                        <div v-else-if="!doneSavingRecord">
+                          <b-spinner style="width: 2.2rem; height: 2.2rem;" label="Loading..."></b-spinner>
+                        </div>
                         <br>
                       </div>
                       <div v-else>
