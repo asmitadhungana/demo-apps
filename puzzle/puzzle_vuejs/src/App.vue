@@ -4,12 +4,10 @@
   margin: 0;
   padding: 0;
 }
-html {
-  background-image: linear-gradient(37.48deg, #4EACE3 0.55%, #6BD1D2 48.26%, #90F5C2 99.42%);;
-  height: 100%;
-}
+
 body,
 #app {
+  background-image: linear-gradient(37.48deg, #4EACE3 0.55%, #6BD1D2 48.26%, #90F5C2 99.42%);
   height: 100%;
 }
 body,
