@@ -42,7 +42,7 @@ export default {
         console.log('session_id', store.data.session_id)
         console.log('level', level)
         console.log('moves', moves)
-        return sendPost(`/payout?address=${store.data.address}&id=${store.data.session_id}&level=${level}&sequence=${moves}`,
+        return sendGet(`/payout?address=${store.data.address}&id=${store.data.session_id}&level=${level}&sequence=${moves}`,
         ).then(res => {
             const {tx, success} = res.data;
             store.setPayout(tx, success);
