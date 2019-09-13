@@ -7,15 +7,16 @@
 
 body,
 #app {
-  background-image: linear-gradient(37.48deg, #4EACE3 0.55%, #6BD1D2 48.26%, #90F5C2 99.42%);
   height: 100%;
 }
 body,
 html {
+  background-image: linear-gradient(37.48deg, #4EACE3 0.55%, #6BD1D2 48.26%, #90F5C2 99.42%);
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   color: #2c3e50;
   font-size: 18px;
   margin: 0;
+  height: 100%;
 }
 
 .main-container {
