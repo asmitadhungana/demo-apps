@@ -404,7 +404,7 @@ input{
                     </button> -->
                     <div v-if="levelIndex > 2">
                       <div v-if="!(doneSavingRecord && !savingRecord)">
-                        <span :style="gameTutorialSmallStyle">Save your record in Harmonny!</span>
+                        <span :style="gameTutorialSmallStyle">Save your record on Harmony!</span>
                         <br>
                         <div v-if="!savingRecord">
                           <button class="btn-primary" @click="saveRecord">Save</button>
