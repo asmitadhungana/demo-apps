@@ -13,7 +13,7 @@
 }
 
 .btn-primary {
-  background: #1B295E;
+  background: #1b295e;
 }
 
 .score-container {
@@ -66,9 +66,9 @@ footer {
 .continue-playing-button {
   margin-top: 9.17892px;
   background: none;
-  border: 1px solid #1B295E;
+  border: 1px solid #1b295e;
   border-radius: 6px;
-  color: #1B295E;
+  color: #1b295e;
 }
 
 .content-level10 {
@@ -109,8 +109,8 @@ footer {
   animation: appearing 1.2s;
   -webkit-animation: appearing 1.2s;
 }
-input{
-    text-align:center;
+input {
+  text-align: center;
 }
 .is-redeemed {
   animation: disappearing 3s;
@@ -263,37 +263,37 @@ input{
   margin: 0 10px;
 }
 
-  .is-level10 {
-    .inputs {
-      background-color: "red" !important;
-    }
-
-    .input-error {
-      font-size: 14px;
-      color: red;
-    }
-
-    .texts {
-      margin-top: 10px;
-    }
+.is-level10 {
+  .inputs {
+    background-color: "red" !important;
   }
 
-  img.loading {
-    width: 50px;
+  .input-error {
+    font-size: 14px;
+    color: red;
   }
 
-  .redeemed-section {
-    font-size: 50px;
-    color: darkgreen;
+  .texts {
+    margin-top: 10px;
+  }
+}
+
+img.loading {
+  width: 50px;
+}
+
+.redeemed-section {
+  font-size: 50px;
+  color: darkgreen;
+}
+
+.lose-hope-image {
+  img {
+    width: 90px;
   }
 
-  .lose-hope-image {
-    img {
-      width: 90px;
-    }
-
-    margin-bottom: 10px;
-  }
+  margin-bottom: 10px;
+}
 
 .congrats-trophy {
   margin-top: -5px;
@@ -326,7 +326,6 @@ input{
     width: 100px;
   }
 }
-
 </style>
 
 <template>
@@ -372,18 +371,22 @@ input{
 
         <div class="board-wrapper" :style="boardWrapperStyle">
           <div v-if="gameEnded">
-<!--            <div v-if="true">-->
+            <!--            <div v-if="true">-->
             <div class="overlay game-over-message appearing">
               <div class="content content-level10">
                 <div>
-                  <div class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex >= levelToShowTwitter">
+                  <div
+                    class="blur-text"
+                    :style="gameTutorialStyle"
+                    v-if="this.levelIndex >= levelToShowTwitter"
+                  >
                     <div class="congrats-trophy">
-                      <img src="../assets/congrats_trophy.svg" alt="">
+                      <img src="../assets/congrats_trophy.svg" alt />
                     </div>
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
-                    <br>
+                    <br />
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
-                    <br>
+                    <br />
                     <div
                       v-if="gameEnded"
                       style="
@@ -397,58 +400,58 @@ input{
                 <div>
                   <div class="blur-text" :style="gameTutorialStyle" v-if="showNoLoseLevel">
                     <div class="lose-hope-image">
-                      <img src="../assets/lose_hope.svg" alt="">
+                      <img src="../assets/lose_hope.svg" alt />
                     </div>
                     <!-- <button v-if="gameEnded"  class="btn-primary" @click="reloadGame">
                       Play again!
-                    </button> -->
+                    </button>-->
                     <div v-if="levelIndex > 2">
                       <div v-if="!(doneSavingRecord && !savingRecord)">
                         <span :style="gameTutorialSmallStyle">Save your record on Harmony!</span>
-                        <br>
+                        <br />
                         <div v-if="!savingRecord">
                           <button class="btn-primary" @click="saveRecord">Save</button>
                         </div>
                         <div v-else-if="!doneSavingRecord">
                           <b-spinner style="width: 2.2rem; height: 2.2rem;" label="Loading..."></b-spinner>
                         </div>
-                        <br>
+                        <br />
                       </div>
                       <div v-else>
                         <div v-if="success">
-                          <span :style="gameTutorialSmallStyle">Your move is stored at <div v-html="txhtml"></div></span>
-                          <br>
+                          <span :style="gameTutorialSmallStyle">
+                            Your move is stored at a
+                            <div v-html="txhtml"></div>
+                          </span>
+                          <br />
                         </div>
                         <div v-else>
-                          <span :style="gameTutorialSmallStyle">Your move is not stored successfully :(</span>
-                          <br>
+                          <span
+                            :style="gameTutorialSmallStyle"
+                          >Your move is not stored successfully :(</span>
+                          <br />
                         </div>
-                        <span :style="gameTutorialSmallStyle">Try Again!</span>
-                        <br>
-                        <br>
-                        <br>
+                        <!-- <span :style="gameTutorialSmallStyle">Try Again!</span> -->
                       </div>
                     </div>
                     <div v-else>
                       <span :style="gameTutorialSmallStyle">Don't lose hope!</span>
-                      <br>
+                      <br />
                       <span :style="gameTutorialSmallStyle">Try Again!</span>
-                      <br>
-                      <br>
-                      <br>
+                      <br />
+                      <br />
+                      <br />
                     </div>
                   </div>
                 </div>
 
                 <div v-if="this.levelIndex === fireworkLevel">
-                  <Fireworks/>
+                  <Fireworks />
                 </div>
 
                 <div class="buttons" v-if="showTwitterLevel">
                   <div>
-                    <social-sharing :title="twitterTitle"
-                                    url=""
-                                    inline-template>
+                    <social-sharing :title="twitterTitle" url inline-template>
                       <network network="twitter">
                         <a class="btn-primary btn-twitter">
                           <i class="fab fa-twitter"></i> Tweet
@@ -509,14 +512,12 @@ input{
         </footer>
         <footer class="flex-vertical" :style="{ width: boardSizePx + 'px' }" v-if="gameEnded">
           <div class="flex-horizontal action-row">
-          <span
+            <span
               class="flex-grow level-text"
               :style="levelTextStyle"
             >Level: {{ levelIndex === levels.length ? levelIndex : levelIndex + 1 }} / {{ levels.length }}</span>
 
-            <button v-if="gameEnded"  class="btn-primary" @click="reloadGame">
-              Play again!
-            </button>
+            <button v-if="gameEnded" class="btn-primary" @click="reloadGame">Play again!</button>
           </div>
         </footer>
         <div class="link-footer"></div>
@@ -588,8 +589,8 @@ export default {
       // constants
       fireworkLevel: 99,
       showCouponLevel: 99,
-      levelToShowTwitter: 10,
-      levelToShowNoLose: 9,
+      levelToShowTwitter: 99,
+      levelToShowNoLose: 99,
 
       // variables
       globalData: store.data,
@@ -614,9 +615,9 @@ export default {
       // Saving records
       savingRecord: false,
       doneSavingRecord: false,
-      tx: '',
-      txhtml: '',
-      success: false,
+      tx: "",
+      txhtml: "",
+      success: false
     };
   },
   mounted() {
@@ -642,9 +643,9 @@ export default {
     );
     //service.register(id);
 
-    this.$root.$on('social_shares_open', function(network, url) {
-      _vm.trackTweet()
-    })
+    this.$root.$on("social_shares_open", function(network, url) {
+      _vm.trackTweet();
+    });
   },
   computed: {
     gameOverStyle() {
@@ -664,8 +665,7 @@ export default {
       return { fontSize: this.boardSizePx / 16 + "px" };
     },
     gameTutorialSmallGoodStyle() {
-      return { fontSize: this.boardSizePx / 16 + "px",
-      color: '#1B295E'};
+      return { fontSize: this.boardSizePx / 16 + "px", color: "#1B295E" };
     },
     gameTutorialTinyStyle() {
       return { fontSize: this.boardSizePx / 32 + "px" };
@@ -676,16 +676,16 @@ export default {
     bijanStyle() {
       return {
         marginTop: 0,
-        marginLeft: 0,
+        marginLeft: 0
       };
     },
     bijanLessStyle() {
       return {
         "margin-top": 30 + "px",
-        "margin-bottom": 10 + "px",
+        "margin-bottom": 10 + "px"
       };
     },
-    bijanInputStyle(){
+    bijanInputStyle() {
       return {
         // height: this.boardSizePx / 10 + "px"
       };
@@ -694,8 +694,7 @@ export default {
       return { fontSize: this.boardSizePx / 8 + "px" };
     },
     gameTutorialGoodStyle() {
-      return { fontSize: this.boardSizePx / 14 + "px",
-              color: '#1B295E'};
+      return { fontSize: this.boardSizePx / 14 + "px", color: "#1B295E" };
     },
     infoItemStyle() {
       return { fontSize: this.boardSizePx / 18 + "px" };
@@ -741,7 +740,7 @@ export default {
      * @return {string}
      */
     twitterTitle() {
-      return `I finished level ${this.levelIndex} of #harmonypuzzle! See my winning moves on @harmonyprotocol #blockchain https://explorer2.harmony.one/#/address/${this.globalData.address} Play it at https://puzzle.harmony.one`
+      return `I finished level ${this.levelIndex} of #harmonypuzzle! See my winning moves on @harmonyprotocol #blockchain https://explorer2.harmony.one/#/address/${this.globalData.address} Play it at https://puzzle.harmony.one`;
     },
 
     showTwitterLevel() {
@@ -757,7 +756,7 @@ export default {
      * @return {boolean}
      */
     showResetButton() {
-      return !(this.isLevel10 && !this.gameEnded)
+      return !(this.isLevel10 && !this.gameEnded);
     }
   },
   destroyed() {
@@ -766,7 +765,7 @@ export default {
   },
   methods: {
     startGame() {
-      console.log('minh startGame')
+      // console.log("minh startGame");
       this.doneSavingRecord = false;
       this.savingRecord = false;
       this.gameStarted = true;
@@ -789,7 +788,7 @@ export default {
     },
 
     userGameLevel() {
-      return `user-game-level-${this.levelIndex + 1}`
+      return `user-game-level-${this.levelIndex + 1}`;
     },
 
     /***
@@ -797,36 +796,36 @@ export default {
      * @param level
      */
     gaTrack(level) {
-      const userLevel = this.userGameLevel()
-      this.$ga.event('puzzle-game', 'game-level', userLevel, 1)
+      const userLevel = this.userGameLevel();
+      this.$ga.event("puzzle-game", "game-level", userLevel, 1);
     },
     /***
      * Track analytics current level
      * @param level
      */
     trackTweet(level) {
-      const userLevel = this.userGameLevel()
-      this.$ga.event('puzzle-game', 'tweet', userLevel)
+      const userLevel = this.userGameLevel();
+      this.$ga.event("puzzle-game", "tweet", userLevel);
     },
     saveRecord() {
-      this.savingRecord = true
-      this.doneSavingRecord = false
-      console.log('minh saveRecord', this.levelIndex - 1, this.lastMoves)
+      this.savingRecord = true;
+      this.doneSavingRecord = false;
+      // console.log("minh saveRecord", this.levelIndex - 1, this.lastMoves);
       service.saveRecord(this.levelIndex, this.lastMoves, () => {
-        console.log('minh done saving')
-        this.doneSavingRecord = true
+        // console.log("minh done saving");
+        this.doneSavingRecord = true;
         this.savingRecord = false;
         this.success = store.data.success == 0;
         this.tx = store.data.tx;
-        this.txhtml = `<a target="_blank" rel="noopener noreferrer" href="https://explorer.beta.harmony.one/#/tx/${this.tx}">transaction</a>`
-      })
+        this.txhtml = `<a target="_blank" rel="noopener noreferrer" href="https://explorer.harmony.one/#/tx/${this.tx}"> Harmony transaction</a>`;
+      });
     },
     onLevelComplete(moves) {
-      console.log('minh onLevelComplete')
+      // console.log("minh onLevelComplete");
       this.gaTrack(this.levelIndex);
       this.trackTimePlayed();
       // Save the most recent moves.
-      this.lastMoves = moves
+      this.lastMoves = moves;
 
       if (this.levelIndex === this.levels.length - 1) {
         this.endLastGame();
@@ -866,7 +865,7 @@ export default {
       this.gameStarted = false;
       store.data.stake = 20;
       clearInterval(this.timer);
-      clearInterval(this.timePlayedTimer)
+      clearInterval(this.timePlayedTimer);
       this.timer = null;
     },
     endLastGame() {
@@ -874,7 +873,7 @@ export default {
       this.levelIndex = this.levels.length;
     },
     restart() {
-      console.log('minh restart')
+      // console.log("minh restart");
       this.gameEnded = false;
     },
     closeEmailPopup() {
@@ -901,7 +900,11 @@ export default {
 
     trackTimePlayed() {
       const currentLevel = this.levelIndex + 1;
-      this.$ga.event('time-played', `game-level-${currentLevel}`, this.timePlayed.toString())
+      this.$ga.event(
+        "time-played",
+        `game-level-${currentLevel}`,
+        this.timePlayed.toString()
+      );
       this.resetTimePlayed();
     },
 
@@ -909,7 +912,7 @@ export default {
      * Restart the game but still keeps the current point
      */
     restartGame() {
-      console.log('minh restartGame')
+      // console.log("minh restartGame");
       playBackgroundMusic();
       this.levelIndex = 0;
       this.isLevel10 = false;
@@ -929,10 +932,10 @@ export default {
      * Reload the game entirely
      */
     reloadGame() {
-      console.log('minh reloadGame')
-      this.$ga.event('puzzle-game', 'reload-game', this.userGameLevel())
+      // console.log("minh reloadGame");
+      this.$ga.event("puzzle-game", "reload-game", this.userGameLevel());
       window.location.reload();
-    },
+    }
   }
 };
 </script>

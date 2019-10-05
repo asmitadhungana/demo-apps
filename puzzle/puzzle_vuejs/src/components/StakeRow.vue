@@ -57,19 +57,24 @@ footer {
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
 
-  20%, 80% {
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
@@ -103,7 +108,7 @@ footer {
   font-size: 1em;
   background-color: transparent;
   border: 0;
-  color: #1B295E;
+  color: #1b295e;
   outline: none;
   &:disabled {
     opacity: 0.5;
@@ -113,14 +118,14 @@ footer {
 
 .btn-primary {
   font-size: 1em;
-  background-color: #1B295E;
+  background-color: #1b295e;
 }
 </style>
 
 <template >
   <div class="flex-horizontal stake-row">
     <div class="stake-buttons flex-horizontal">
-      <button class="btn-mini" @click="minus" >
+      <button class="btn-mini" @click="minus">
         <font-awesome-icon icon="minus"></font-awesome-icon>
       </button>
       <div class="stake-amount flex-hv-center">
@@ -131,16 +136,11 @@ footer {
         <font-awesome-icon icon="plus"></font-awesome-icon>
       </button>
     </div>
-    <button
-      v-if="showPlayButton()"
-      class="btn-primary start-btn"
-      @click="letsPlay"
-    >
-    <div v-if="!loading"> Play </div>
-    <div v-if="loading">
+    <button v-if="showPlayButton()" class="btn-primary start-btn" @click="letsPlay">
+      <div v-if="!loading">Play</div>
+      <div v-if="loading">
         <b-spinner small label="Loading..."></b-spinner>
-    </div>
-
+      </div>
     </button>
   </div>
 </template>
@@ -148,7 +148,7 @@ footer {
 <script>
 import service from "../service";
 import store from "../store";
-import { connect } from 'net';
+import { connect } from "net";
 export default {
   name: "StakeRow",
   props: {
@@ -159,7 +159,6 @@ export default {
     return {
       globalData: store.data,
       loading: false
-
     };
   },
   computed: {
@@ -169,7 +168,7 @@ export default {
      */
     isZeroBalance() {
       return this.globalData.balance <= 0;
-    },
+    }
   },
   methods: {
     minus() {
@@ -183,12 +182,12 @@ export default {
     letsPlay() {
       playBackgroundMusic();
       this.globalData.balance -= this.globalData.stake;
-      console.log('minh');
+      // console.log('minh');
       this.loading = true;
       service.getSession(() => {
         this.loading = false;
-        console.log('minh session id', store.data.session_id)
-      })
+        // console.log("minh session id", store.data.session_id);
+      });
       this.$emit("stake");
     },
     stakeToken() {
@@ -198,11 +197,10 @@ export default {
         .then(() => {
           this.$emit("stake", this.globalData.stake);
         });*/
-        this.$emit("stake", this.globalData.stake);
+      this.$emit("stake", this.globalData.stake);
     },
     showPlayButton() {
-
-      return !(this.isLevel10 && !this.gameEnded)
+      return !(this.isLevel10 && !this.gameEnded);
     }
   }
 };

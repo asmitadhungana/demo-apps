@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "harmony-puzzle"
+  },
+  "targets": {
+    "harmony-puzzle": {
+      "hosting": {
+        "puzzlemainnet": [
+          "puzzlemainnet"
+        ]
+      }
+    }
   }
 }
